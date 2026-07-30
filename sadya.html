@@ -38,6 +38,8 @@ label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
 .req{color:var(--red)}
 input[type=text],input[type=tel]{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:var(--cream);margin-bottom:16px;font-family:inherit}
 input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#fff}
+.towerSel{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:var(--cream);margin-bottom:16px;font-family:inherit;color:var(--ink);appearance:auto}
+.towerSel:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#fff}
 .platerow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
 .platerow .lbl{font-size:15px;font-weight:600}
 .stepper{display:flex;align-items:center}
@@ -121,9 +123,36 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
       <label>WhatsApp Number <span class="req">*</span></label>
       <input type="tel" id="mobile" placeholder="10-digit WhatsApp number" maxlength="10">
       <div class="err" id="err-mobile">Please enter a valid 10-digit WhatsApp number</div>
-      <label>Tower No. <span class="req">*</span></label>
-      <input type="text" id="tower" placeholder="e.g. Tower 5">
-      <div class="err" id="err-tower">Please enter your tower number</div>
+      <label>Tower / Villa <span class="req">*</span></label>
+      <select id="tower" class="towerSel">
+        <option value="" disabled selected>Select Tower / Villa</option>
+        <option value="Tower 1">Tower 1</option>
+        <option value="Tower 2">Tower 2</option>
+        <option value="Tower 3">Tower 3</option>
+        <option value="Tower 4">Tower 4</option>
+        <option value="Tower 5">Tower 5</option>
+        <option value="Tower 6">Tower 6</option>
+        <option value="Tower 7">Tower 7</option>
+        <option value="Tower 8">Tower 8</option>
+        <option value="Tower 9">Tower 9</option>
+        <option value="Tower 10">Tower 10</option>
+        <option value="Tower 11">Tower 11</option>
+        <option value="Tower 12">Tower 12</option>
+        <option value="Tower 13">Tower 13</option>
+        <option value="Tower 14">Tower 14</option>
+        <option value="Tower 15">Tower 15</option>
+        <option value="Tower 16">Tower 16</option>
+        <option value="Tower 17">Tower 17</option>
+        <option value="Tower 18">Tower 18</option>
+        <option value="Tower 19">Tower 19</option>
+        <option value="Tower 20">Tower 20</option>
+        <option value="Tower 21">Tower 21</option>
+        <option value="Tower 22">Tower 22</option>
+        <option value="Tower 23">Tower 23</option>
+        <option value="Tower 24">Tower 24</option>
+        <option value="Villa">Villa</option>
+      </select>
+      <div class="err" id="err-tower">Please select your tower or villa</div>
       <label>Flat No. <span class="req">*</span></label>
       <input type="text" id="flat" placeholder="e.g. 204">
       <div class="err" id="err-flat">Please enter your flat number</div>
@@ -149,7 +178,7 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
         </div>
       </div>
       <div class="err" id="err-plates">Please add at least one plate</div>
-      <div class="platenote">The vendor charges per chair / banana leaf, so please buy one ticket for every person being seated.</div>
+      <div class="platenote">The vendor charges per chair / banana leaf (<strong>₹600/- per leaf</strong>), so please buy one ticket for every person being seated.</div>
     </div>
 
     <div class="card summary">
