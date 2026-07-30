@@ -188,6 +188,138 @@ a{text-decoration:none;color:inherit}
   .hero__bg{transform:scale(1.02)}
   .hero__logo,.eyebrow,.title,.sub,.dates,.countdown,.cd-note,.cue{opacity:1}
 }
+
+/* ---- SCHEDULE ---- */
+.schedule{
+  padding:74px 20px 40px;
+  max-width:1000px;margin:0 auto;
+}
+.schedule__head{text-align:center;margin-bottom:40px}
+.schedule__eyebrow{
+  font-size:12px;letter-spacing:.4em;text-transform:uppercase;font-weight:600;
+  color:var(--gold);padding-left:.4em;
+}
+.schedule__title{
+  font-family:"Fraunces",serif;font-weight:600;
+  font-size:clamp(30px,6vw,52px);line-height:1.02;margin-top:10px;
+}
+.schedule__title em{font-style:italic;color:var(--gold)}
+.schedule__sub{margin-top:12px;color:rgba(247,242,228,.7);font-size:15px}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.day{
+  background:#16281b;border:1px solid rgba(232,184,75,.16);
+  border-radius:16px;padding:22px 20px 24px;
+}
+.day__label{
+  display:flex;align-items:baseline;gap:8px;
+  padding-bottom:14px;margin-bottom:16px;
+  border-bottom:1px solid rgba(232,184,75,.2);
+}
+.day__num{
+  font-family:"Fraunces",serif;font-weight:600;font-size:34px;color:var(--gold);line-height:1;
+}
+.day__date{font-size:13px;letter-spacing:.06em;color:rgba(247,242,228,.75);text-transform:uppercase}
+.slot{margin-bottom:18px}
+.slot:last-child{margin-bottom:0}
+.slot__time{
+  display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);background:var(--gold);padding:3px 10px;border-radius:20px;margin-bottom:7px;
+}
+.slot__name{font-size:15.5px;font-weight:500;color:var(--cream);line-height:1.35}
+.slot__venue{font-size:12.5px;color:var(--leaf);margin-top:3px;font-weight:500}
+.slot__venue::before{content:"\1F4CD  ";font-size:11px}
+@media (max-width:780px){
+  .days{grid-template-columns:1fr;gap:14px}
+  .day{padding:20px 18px}
+}
+
+/* ---- GALLERY ---- */
+  padding:72px 20px 84px;
+  max-width:1160px;margin:0 auto;
+}
+.gallery__head{text-align:center;margin-bottom:38px}
+.gallery__eyebrow{
+  font-size:12px;letter-spacing:.4em;text-transform:uppercase;font-weight:600;
+  color:var(--gold);padding-left:.4em;
+}
+.gallery__title{
+  font-family:"Fraunces",serif;font-weight:600;
+  font-size:clamp(30px,6vw,52px);line-height:1.02;margin-top:10px;
+}
+.gallery__title em{font-style:italic;color:var(--gold)}
+.gallery__sub{margin-top:12px;color:rgba(247,242,228,.7);font-size:15px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.tile{
+  position:relative;overflow:hidden;border-radius:12px;
+  aspect-ratio:1/1;cursor:pointer;background:#16281b;
+  border:1px solid rgba(232,184,75,.12);
+}
+.tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s ease;
+}
+.tile:hover img,.tile:focus-visible img{transform:scale(1.07)}
+.tile::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(15,28,18,0) 55%,rgba(15,28,18,.55) 100%);
+  opacity:0;transition:opacity .3s;
+}
+.tile:hover::after{opacity:1}
+.tile .cap{
+  position:absolute;left:10px;right:10px;bottom:9px;z-index:2;
+  font-size:11.5px;font-weight:500;letter-spacing:.02em;color:#fff;
+  opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;
+  text-shadow:0 1px 6px rgba(0,0,0,.6);
+}
+.tile:hover .cap{opacity:1;transform:translateY(0)}
+.tile:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:820px){.grid{grid-template-columns:repeat(3,1fr);gap:9px}}
+@media (max-width:520px){.grid{grid-template-columns:repeat(2,1fr);gap:7px} .tile .cap{opacity:1;transform:none;font-size:10.5px}}
+
+/* ---- LIGHTBOX ---- */
+.lb{
+  position:fixed;inset:0;z-index:60;display:none;
+  background:rgba(8,15,10,.95);
+  align-items:center;justify-content:center;
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+}
+.lb.open{display:flex}
+.lb__img{
+  max-width:92vw;max-height:80vh;object-fit:contain;
+  border-radius:8px;box-shadow:0 10px 60px rgba(0,0,0,.6);
+  animation:lbIn .3s ease;
+}
+@keyframes lbIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+.lb__cap{
+  position:absolute;bottom:26px;left:0;right:0;text-align:center;
+  color:rgba(247,242,228,.9);font-size:14px;letter-spacing:.02em;padding:0 20px;
+}
+.lb__count{
+  position:absolute;top:22px;left:0;right:0;text-align:center;
+  color:rgba(247,242,228,.6);font-size:12px;letter-spacing:.2em;
+}
+.lb__btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:52px;height:52px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(247,242,228,.12);color:#fff;font-size:26px;line-height:1;
+  display:flex;align-items:center;justify-content:center;transition:background .2s;
+}
+.lb__btn:hover{background:rgba(232,184,75,.35)}
+.lb__prev{left:14px}.lb__next{right:14px}
+.lb__close{
+  position:absolute;top:16px;right:18px;width:44px;height:44px;border-radius:50%;
+  border:0;cursor:pointer;background:rgba(247,242,228,.12);color:#fff;font-size:24px;
+  display:flex;align-items:center;justify-content:center;transition:background .2s;
+}
+.lb__close:hover{background:rgba(192,67,47,.6)}
+@media (max-width:520px){
+  .lb__btn{width:42px;height:42px;font-size:22px}
+  .lb__img{max-height:72vh}
+}
 </style>
 </head>
 <body>
@@ -205,6 +337,8 @@ a{text-decoration:none;color:inherit}
     <a href="sadya.html">Sadya</a>
     <a href="games.html">Games</a>
     <a href="tugofwar.html">Tug of War</a>
+    <a href="armwrestling.html">Arm Wrestling</a>
+    <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -232,6 +366,155 @@ a{text-decoration:none;color:inherit}
 
   <div class="cue"><span class="dot"></span>Scroll</div>
 </header>
+
+<section class="schedule" id="schedule">
+  <div class="schedule__head">
+    <p class="schedule__eyebrow">Three Days</p>
+    <h2 class="schedule__title">Festival <em>schedule</em></h2>
+    <p class="schedule__sub">4, 5 &amp; 6 September 2026 &middot; Prestige Lakeside Habitat</p>
+  </div>
+  <div class="days">
+    <div class="day">
+      <div class="day__label"><span class="day__num">04</span><span class="day__date">Fri &middot; Sep</span></div>
+      <div class="slot">
+        <span class="slot__time">Evening</span>
+        <div class="slot__name">Curtain Raiser &mdash; Theyyam &amp; Kathakali Performance</div>
+        <div class="slot__venue">Amphi Theatre</div>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day__label"><span class="day__num">05</span><span class="day__date">Sat &middot; Sep</span></div>
+      <div class="slot">
+        <span class="slot__time">Morning</span>
+        <div class="slot__name">Pookkalam, Thalappoli, Maveli &amp; Chendamelam</div>
+        <div class="slot__venue">CDP Road</div>
+      </div>
+      <div class="slot">
+        <span class="slot__time">Afternoon</span>
+        <div class="slot__name">Thiruvathirakkali &amp; Onakkalikal</div>
+        <div class="slot__venue">Zephyr Lawn</div>
+      </div>
+      <div class="slot">
+        <span class="slot__time">Evening</span>
+        <div class="slot__name">Residents' Events, Dance &amp; Fashion Show</div>
+        <div class="slot__venue">Main Stage</div>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day__label"><span class="day__num">06</span><span class="day__date">Sun &middot; Sep</span></div>
+      <div class="slot">
+        <span class="slot__time">Afternoon</span>
+        <div class="slot__name">Onasadhya &amp; Onakkalikal (Vadamvali etc.)</div>
+        <div class="slot__venue">Zephyr Party Halls &amp; Lawn</div>
+      </div>
+      <div class="slot">
+        <span class="slot__time">Evening</span>
+        <div class="slot__name">Live Concert by Renowned Band</div>
+        <div class="slot__venue">Main Stage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="gallery__head">
+    <p class="gallery__eyebrow">Moments</p>
+    <h2 class="gallery__title">From our <em>celebrations</em></h2>
+    <p class="gallery__sub">Tap any photo to view full screen</p>
+  </div>
+  <div class="grid" id="grid">
+      <button class="tile" data-i="0" aria-label="Fashion show — the men's ramp walk">
+        <img src="gallery/thumb01.jpg" alt="Fashion show — the men's ramp walk" loading="lazy">
+        <span class="cap">Fashion show — the men's ramp walk</span>
+      </button>
+      <button class="tile" data-i="1" aria-label="Onam fashion show in kasavu sarees">
+        <img src="gallery/thumb02.jpg" alt="Onam fashion show in kasavu sarees" loading="lazy">
+        <span class="cap">Onam fashion show in kasavu sarees</span>
+      </button>
+      <button class="tile" data-i="2" aria-label="Kids' western dance under the lasers">
+        <img src="gallery/thumb03.jpg" alt="Kids' western dance under the lasers" loading="lazy">
+        <span class="cap">Kids' western dance under the lasers</span>
+      </button>
+      <button class="tile" data-i="3" aria-label="Classical group dance performance">
+        <img src="gallery/thumb04.jpg" alt="Classical group dance performance" loading="lazy">
+        <span class="cap">Classical group dance performance</span>
+      </button>
+      <button class="tile" data-i="4" aria-label="Little ones' folk dance">
+        <img src="gallery/thumb05.jpg" alt="Little ones' folk dance" loading="lazy">
+        <span class="cap">Little ones' folk dance</span>
+      </button>
+      <button class="tile" data-i="5" aria-label="Women's chenda melam on stage">
+        <img src="gallery/thumb06.jpg" alt="Women's chenda melam on stage" loading="lazy">
+        <span class="cap">Women's chenda melam on stage</span>
+      </button>
+      <button class="tile" data-i="6" aria-label="Onam Sadhya — the grand feast">
+        <img src="gallery/thumb07.jpg" alt="Onam Sadhya — the grand feast" loading="lazy">
+        <span class="cap">Onam Sadhya — the grand feast</span>
+      </button>
+      <button class="tile" data-i="7" aria-label="Sadhya served on banana leaf">
+        <img src="gallery/thumb08.jpg" alt="Sadhya served on banana leaf" loading="lazy">
+        <span class="cap">Sadhya served on banana leaf</span>
+      </button>
+      <button class="tile" data-i="8" aria-label="Kids scrambling for sweets">
+        <img src="gallery/thumb09.jpg" alt="Kids scrambling for sweets" loading="lazy">
+        <span class="cap">Kids scrambling for sweets</span>
+      </button>
+      <button class="tile" data-i="9" aria-label="Musical chairs for the children">
+        <img src="gallery/thumb10.jpg" alt="Musical chairs for the children" loading="lazy">
+        <span class="cap">Musical chairs for the children</span>
+      </button>
+      <button class="tile" data-i="10" aria-label="Blindfold game with the elders">
+        <img src="gallery/thumb11.jpg" alt="Blindfold game with the elders" loading="lazy">
+        <span class="cap">Blindfold game with the elders</span>
+      </button>
+      <button class="tile" data-i="11" aria-label="Men's tug of war">
+        <img src="gallery/thumb12.jpg" alt="Men's tug of war" loading="lazy">
+        <span class="cap">Men's tug of war</span>
+      </button>
+      <button class="tile" data-i="12" aria-label="Women's tug of war">
+        <img src="gallery/thumb13.jpg" alt="Women's tug of war" loading="lazy">
+        <span class="cap">Women's tug of war</span>
+      </button>
+      <button class="tile" data-i="13" aria-label="Thiruvathira in the courtyard">
+        <img src="gallery/thumb14.jpg" alt="Thiruvathira in the courtyard" loading="lazy">
+        <span class="cap">Thiruvathira in the courtyard</span>
+      </button>
+      <button class="tile" data-i="14" aria-label="Massed Thiruvathira dance">
+        <img src="gallery/thumb15.jpg" alt="Massed Thiruvathira dance" loading="lazy">
+        <span class="cap">Massed Thiruvathira dance</span>
+      </button>
+      <button class="tile" data-i="15" aria-label="Theyyam welcoming the guests">
+        <img src="gallery/thumb16.jpg" alt="Theyyam welcoming the guests" loading="lazy">
+        <span class="cap">Theyyam welcoming the guests</span>
+      </button>
+      <button class="tile" data-i="16" aria-label="Chenda melam procession">
+        <img src="gallery/thumb17.jpg" alt="Chenda melam procession" loading="lazy">
+        <span class="cap">Chenda melam procession</span>
+      </button>
+      <button class="tile" data-i="17" aria-label="Kathakali performance at night">
+        <img src="gallery/thumb18.jpg" alt="Kathakali performance at night" loading="lazy">
+        <span class="cap">Kathakali performance at night</span>
+      </button>
+      <button class="tile" data-i="18" aria-label="Maveli arrives in style">
+        <img src="gallery/thumb19.jpg" alt="Maveli arrives in style" loading="lazy">
+        <span class="cap">Maveli arrives in style</span>
+      </button>
+      <button class="tile" data-i="19" aria-label="The grand pookalam">
+        <img src="gallery/thumb20.jpg" alt="The grand pookalam" loading="lazy">
+        <span class="cap">The grand pookalam</span>
+      </button>
+  </div>
+</section>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb__close" id="lbClose" aria-label="Close">&times;</button>
+  <div class="lb__count" id="lbCount"></div>
+  <button class="lb__btn lb__prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <img class="lb__img" id="lbImg" src="" alt="">
+  <button class="lb__btn lb__next" id="lbNext" aria-label="Next">&#8250;</button>
+  <div class="lb__cap" id="lbCap"></div>
+</div>
+
 
 <script>
 (function(){
@@ -261,6 +544,42 @@ a{text-decoration:none;color:inherit}
     t.setAttribute('aria-expanded',open);
   });
   links.addEventListener('click',function(e){if(e.target.tagName==='A')links.classList.remove('open');});
+
+  // ---- gallery lightbox ----
+  var FULL=["gallery/photo01.jpg", "gallery/photo02.jpg", "gallery/photo03.jpg", "gallery/photo04.jpg", "gallery/photo05.jpg", "gallery/photo06.jpg", "gallery/photo07.jpg", "gallery/photo08.jpg", "gallery/photo09.jpg", "gallery/photo10.jpg", "gallery/photo11.jpg", "gallery/photo12.jpg", "gallery/photo13.jpg", "gallery/photo14.jpg", "gallery/photo15.jpg", "gallery/photo16.jpg", "gallery/photo17.jpg", "gallery/photo18.jpg", "gallery/photo19.jpg", "gallery/photo20.jpg"];
+  var CAPS=["Fashion show \u2014 the men's ramp walk", "Onam fashion show in kasavu sarees", "Kids' western dance under the lasers", "Classical group dance performance", "Little ones' folk dance", "Women's chenda melam on stage", "Onam Sadhya \u2014 the grand feast", "Sadhya served on banana leaf", "Kids scrambling for sweets", "Musical chairs for the children", "Blindfold game with the elders", "Men's tug of war", "Women's tug of war", "Thiruvathira in the courtyard", "Massed Thiruvathira dance", "Theyyam welcoming the guests", "Chenda melam procession", "Kathakali performance at night", "Maveli arrives in style", "The grand pookalam"];
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),
+      lbCap=document.getElementById('lbCap'),lbCount=document.getElementById('lbCount');
+  var cur=0;
+  function show(i){
+    cur=(i+FULL.length)%FULL.length;
+    lbImg.src=FULL[cur];lbImg.alt=CAPS[cur];
+    lbCap.textContent=CAPS[cur];
+    lbCount.textContent=(cur+1)+' / '+FULL.length;
+  }
+  function openLb(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden';}
+  function closeLb(){lb.classList.remove('open');lbImg.src='';document.body.style.overflow='';}
+  document.getElementById('grid').addEventListener('click',function(e){
+    var t=e.target.closest('.tile');if(t)openLb(+t.dataset.i);
+  });
+  document.getElementById('lbClose').addEventListener('click',closeLb);
+  document.getElementById('lbNext').addEventListener('click',function(){show(cur+1);});
+  document.getElementById('lbPrev').addEventListener('click',function(){show(cur-1);});
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeLb();
+    else if(e.key==='ArrowRight')show(cur+1);
+    else if(e.key==='ArrowLeft')show(cur-1);
+  });
+  // swipe
+  var sx=0;
+  lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  lb.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>45) show(dx<0?cur+1:cur-1);
+  },{passive:true});
+
 })();
 </script>
 </body>
