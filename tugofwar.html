@@ -48,6 +48,11 @@ label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
 .req{color:var(--red)}
 .opt{color:#a49c82;font-weight:500}
 input[type=text],input[type=tel]{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:var(--cream);margin-bottom:16px;font-family:inherit}
+.towerSel{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:var(--cream);margin-bottom:16px;font-family:inherit;color:var(--ink);appearance:auto}
+.towerSel:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#fff}
+.memrow{display:grid;grid-template-columns:1fr 120px 90px;gap:8px}
+.memrow input,.memrow .memtower{margin-bottom:10px}
+@media(max-width:480px){.memrow{grid-template-columns:1fr}}
 input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#fff}
 .cats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
 .cat{border:1.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700;font-size:14px;color:var(--leaf);background:var(--cream)}
@@ -113,9 +118,17 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
       <input type="text" id="team" placeholder="Your team name">
       <div class="err" id="err-team">Please enter a team name</div>
 
-      <label>Team Captain <span class="req">*</span></label>
-      <input type="text" id="captain" placeholder="Name + apartment/villa (e.g. Priya, A-204)">
-      <div class="err" id="err-captain">Please enter the captain's name and flat</div>
+      <label>Captain Name <span class="req">*</span></label>
+      <input type="text" id="captainName" placeholder="e.g. Priya">
+      <div class="err" id="err-captainName">Please enter the captain's name</div>
+
+      <label>Captain Tower / Villa <span class="req">*</span></label>
+      <select id="captainTower" class="towerSel"><option value="" disabled selected>Tower / Villa</option><option value="Tower 1">Tower 1</option><option value="Tower 2">Tower 2</option><option value="Tower 3">Tower 3</option><option value="Tower 4">Tower 4</option><option value="Tower 5">Tower 5</option><option value="Tower 6">Tower 6</option><option value="Tower 7">Tower 7</option><option value="Tower 8">Tower 8</option><option value="Tower 9">Tower 9</option><option value="Tower 10">Tower 10</option><option value="Tower 11">Tower 11</option><option value="Tower 12">Tower 12</option><option value="Tower 13">Tower 13</option><option value="Tower 14">Tower 14</option><option value="Tower 15">Tower 15</option><option value="Tower 16">Tower 16</option><option value="Tower 17">Tower 17</option><option value="Tower 18">Tower 18</option><option value="Tower 19">Tower 19</option><option value="Tower 20">Tower 20</option><option value="Tower 21">Tower 21</option><option value="Tower 22">Tower 22</option><option value="Tower 23">Tower 23</option><option value="Tower 24">Tower 24</option><option value="Villa">Villa</option></select>
+      <div class="err" id="err-captainTower">Please select tower / villa</div>
+
+      <label>Captain Flat No. <span class="req">*</span></label>
+      <input type="text" id="captainFlat" placeholder="e.g. 204">
+      <div class="err" id="err-captainFlat">Please enter the flat number</div>
 
       <label>WhatsApp Number <span class="req">*</span></label>
       <input type="tel" id="mobile" placeholder="10-digit WhatsApp number" maxlength="10">
@@ -124,23 +137,55 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
 
     <div class="card">
       <h3 class="ch">Team Members</h3>
-      <div class="memnote">Add name + apartment/villa for each. Captain counts as member 1, so add up to 7 more.</div>
+      <div class="memnote">Captain counts as member 1, so add up to 7 more. Pick each member's tower / villa.</div>
       <label>Member 2 <span class="opt">(optional)</span></label>
-      <input type="text" id="m1" placeholder="Name + flat">
+      <div class="memrow">
+        <input type="text" id="m1n" placeholder="Name">
+        <select id="m1t" class="towerSel memtower"><option value="" disabled selected>Tower / Villa</option><option value="Tower 1">Tower 1</option><option value="Tower 2">Tower 2</option><option value="Tower 3">Tower 3</option><option value="Tower 4">Tower 4</option><option value="Tower 5">Tower 5</option><option value="Tower 6">Tower 6</option><option value="Tower 7">Tower 7</option><option value="Tower 8">Tower 8</option><option value="Tower 9">Tower 9</option><option value="Tower 10">Tower 10</option><option value="Tower 11">Tower 11</option><option value="Tower 12">Tower 12</option><option value="Tower 13">Tower 13</option><option value="Tower 14">Tower 14</option><option value="Tower 15">Tower 15</option><option value="Tower 16">Tower 16</option><option value="Tower 17">Tower 17</option><option value="Tower 18">Tower 18</option><option value="Tower 19">Tower 19</option><option value="Tower 20">Tower 20</option><option value="Tower 21">Tower 21</option><option value="Tower 22">Tower 22</option><option value="Tower 23">Tower 23</option><option value="Tower 24">Tower 24</option><option value="Villa">Villa</option></select>
+        <input type="text" id="m1f" class="memflat" placeholder="Flat">
+      </div>
       <label>Member 3 <span class="opt">(optional)</span></label>
-      <input type="text" id="m2" placeholder="Name + flat">
+      <div class="memrow">
+        <input type="text" id="m2n" placeholder="Name">
+        <select id="m2t" class="towerSel memtower"><option value="" disabled selected>Tower / Villa</option><option value="Tower 1">Tower 1</option><option value="Tower 2">Tower 2</option><option value="Tower 3">Tower 3</option><option value="Tower 4">Tower 4</option><option value="Tower 5">Tower 5</option><option value="Tower 6">Tower 6</option><option value="Tower 7">Tower 7</option><option value="Tower 8">Tower 8</option><option value="Tower 9">Tower 9</option><option value="Tower 10">Tower 10</option><option value="Tower 11">Tower 11</option><option value="Tower 12">Tower 12</option><option value="Tower 13">Tower 13</option><option value="Tower 14">Tower 14</option><option value="Tower 15">Tower 15</option><option value="Tower 16">Tower 16</option><option value="Tower 17">Tower 17</option><option value="Tower 18">Tower 18</option><option value="Tower 19">Tower 19</option><option value="Tower 20">Tower 20</option><option value="Tower 21">Tower 21</option><option value="Tower 22">Tower 22</option><option value="Tower 23">Tower 23</option><option value="Tower 24">Tower 24</option><option value="Villa">Villa</option></select>
+        <input type="text" id="m2f" class="memflat" placeholder="Flat">
+      </div>
       <label>Member 4 <span class="opt">(optional)</span></label>
-      <input type="text" id="m3" placeholder="Name + flat">
+      <div class="memrow">
+        <input type="text" id="m3n" placeholder="Name">
+        <select id="m3t" class="towerSel memtower"><option value="" disabled selected>Tower / Villa</option><option value="Tower 1">Tower 1</option><option value="Tower 2">Tower 2</option><option value="Tower 3">Tower 3</option><option value="Tower 4">Tower 4</option><option value="Tower 5">Tower 5</option><option value="Tower 6">Tower 6</option><option value="Tower 7">Tower 7</option><option value="Tower 8">Tower 8</option><option value="Tower 9">Tower 9</option><option value="Tower 10">Tower 10</option><option value="Tower 11">Tower 11</option><option value="Tower 12">Tower 12</option><option value="Tower 13">Tower 13</option><option value="Tower 14">Tower 14</option><option value="Tower 15">Tower 15</option><option value="Tower 16">Tower 16</option><option value="Tower 17">Tower 17</option><option value="Tower 18">Tower 18</option><option value="Tower 19">Tower 19</option><option value="Tower 20">Tower 20</option><option value="Tower 21">Tower 21</option><option value="Tower 22">Tower 22</option><option value="Tower 23">Tower 23</option><option value="Tower 24">Tower 24</option><option value="Villa">Villa</option></select>
+        <input type="text" id="m3f" class="memflat" placeholder="Flat">
+      </div>
       <label>Member 5 <span class="opt">(optional)</span></label>
-      <input type="text" id="m4" placeholder="Name + flat">
+      <div class="memrow">
+        <input type="text" id="m4n" placeholder="Name">
+        <select id="m4t" class="towerSel memtower"><option value="" disabled selected>Tower / Villa</option><option value="Tower 1">Tower 1</option><option value="Tower 2">Tower 2</option><option value="Tower 3">Tower 3</option><option value="Tower 4">Tower 4</option><option value="Tower 5">Tower 5</option><option value="Tower 6">Tower 6</option><option value="Tower 7">Tower 7</option><option value="Tower 8">Tower 8</option><option value="Tower 9">Tower 9</option><option value="Tower 10">Tower 10</option><option value="Tower 11">Tower 11</option><option value="Tower 12">Tower 12</option><option value="Tower 13">Tower 13</option><option value="Tower 14">Tower 14</option><option value="Tower 15">Tower 15</option><option value="Tower 16">Tower 16</option><option value="Tower 17">Tower 17</option><option value="Tower 18">Tower 18</option><option value="Tower 19">Tower 19</option><option value="Tower 20">Tower 20</option><option value="Tower 21">Tower 21</option><option value="Tower 22">Tower 22</option><option value="Tower 23">Tower 23</option><option value="Tower 24">Tower 24</option><option value="Villa">Villa</option></select>
+        <input type="text" id="m4f" class="memflat" placeholder="Flat">
+      </div>
       <label>Member 6 <span class="opt">(optional)</span></label>
-      <input type="text" id="m5" placeholder="Name + flat">
+      <div class="memrow">
+        <input type="text" id="m5n" placeholder="Name">
+        <select id="m5t" class="towerSel memtower"><option value="" disabled selected>Tower / Villa</option><option value="Tower 1">Tower 1</option><option value="Tower 2">Tower 2</option><option value="Tower 3">Tower 3</option><option value="Tower 4">Tower 4</option><option value="Tower 5">Tower 5</option><option value="Tower 6">Tower 6</option><option value="Tower 7">Tower 7</option><option value="Tower 8">Tower 8</option><option value="Tower 9">Tower 9</option><option value="Tower 10">Tower 10</option><option value="Tower 11">Tower 11</option><option value="Tower 12">Tower 12</option><option value="Tower 13">Tower 13</option><option value="Tower 14">Tower 14</option><option value="Tower 15">Tower 15</option><option value="Tower 16">Tower 16</option><option value="Tower 17">Tower 17</option><option value="Tower 18">Tower 18</option><option value="Tower 19">Tower 19</option><option value="Tower 20">Tower 20</option><option value="Tower 21">Tower 21</option><option value="Tower 22">Tower 22</option><option value="Tower 23">Tower 23</option><option value="Tower 24">Tower 24</option><option value="Villa">Villa</option></select>
+        <input type="text" id="m5f" class="memflat" placeholder="Flat">
+      </div>
       <label>Member 7 <span class="opt">(optional)</span></label>
-      <input type="text" id="m6" placeholder="Name + flat">
+      <div class="memrow">
+        <input type="text" id="m6n" placeholder="Name">
+        <select id="m6t" class="towerSel memtower"><option value="" disabled selected>Tower / Villa</option><option value="Tower 1">Tower 1</option><option value="Tower 2">Tower 2</option><option value="Tower 3">Tower 3</option><option value="Tower 4">Tower 4</option><option value="Tower 5">Tower 5</option><option value="Tower 6">Tower 6</option><option value="Tower 7">Tower 7</option><option value="Tower 8">Tower 8</option><option value="Tower 9">Tower 9</option><option value="Tower 10">Tower 10</option><option value="Tower 11">Tower 11</option><option value="Tower 12">Tower 12</option><option value="Tower 13">Tower 13</option><option value="Tower 14">Tower 14</option><option value="Tower 15">Tower 15</option><option value="Tower 16">Tower 16</option><option value="Tower 17">Tower 17</option><option value="Tower 18">Tower 18</option><option value="Tower 19">Tower 19</option><option value="Tower 20">Tower 20</option><option value="Tower 21">Tower 21</option><option value="Tower 22">Tower 22</option><option value="Tower 23">Tower 23</option><option value="Tower 24">Tower 24</option><option value="Villa">Villa</option></select>
+        <input type="text" id="m6f" class="memflat" placeholder="Flat">
+      </div>
       <label>Member 8 <span class="opt">(optional)</span></label>
-      <input type="text" id="m7" placeholder="Name + flat">
+      <div class="memrow">
+        <input type="text" id="m7n" placeholder="Name">
+        <select id="m7t" class="towerSel memtower"><option value="" disabled selected>Tower / Villa</option><option value="Tower 1">Tower 1</option><option value="Tower 2">Tower 2</option><option value="Tower 3">Tower 3</option><option value="Tower 4">Tower 4</option><option value="Tower 5">Tower 5</option><option value="Tower 6">Tower 6</option><option value="Tower 7">Tower 7</option><option value="Tower 8">Tower 8</option><option value="Tower 9">Tower 9</option><option value="Tower 10">Tower 10</option><option value="Tower 11">Tower 11</option><option value="Tower 12">Tower 12</option><option value="Tower 13">Tower 13</option><option value="Tower 14">Tower 14</option><option value="Tower 15">Tower 15</option><option value="Tower 16">Tower 16</option><option value="Tower 17">Tower 17</option><option value="Tower 18">Tower 18</option><option value="Tower 19">Tower 19</option><option value="Tower 20">Tower 20</option><option value="Tower 21">Tower 21</option><option value="Tower 22">Tower 22</option><option value="Tower 23">Tower 23</option><option value="Tower 24">Tower 24</option><option value="Villa">Villa</option></select>
+        <input type="text" id="m7f" class="memflat" placeholder="Flat">
+      </div>
       <label>Substitute <span class="opt">(optional)</span></label>
-      <input type="text" id="sub" placeholder="Name + flat">
+      <div class="memrow">
+        <input type="text" id="subn" placeholder="Name">
+        <select id="subt" class="towerSel memtower"><option value="" disabled selected>Tower / Villa</option><option value="Tower 1">Tower 1</option><option value="Tower 2">Tower 2</option><option value="Tower 3">Tower 3</option><option value="Tower 4">Tower 4</option><option value="Tower 5">Tower 5</option><option value="Tower 6">Tower 6</option><option value="Tower 7">Tower 7</option><option value="Tower 8">Tower 8</option><option value="Tower 9">Tower 9</option><option value="Tower 10">Tower 10</option><option value="Tower 11">Tower 11</option><option value="Tower 12">Tower 12</option><option value="Tower 13">Tower 13</option><option value="Tower 14">Tower 14</option><option value="Tower 15">Tower 15</option><option value="Tower 16">Tower 16</option><option value="Tower 17">Tower 17</option><option value="Tower 18">Tower 18</option><option value="Tower 19">Tower 19</option><option value="Tower 20">Tower 20</option><option value="Tower 21">Tower 21</option><option value="Tower 22">Tower 22</option><option value="Tower 23">Tower 23</option><option value="Tower 24">Tower 24</option><option value="Villa">Villa</option></select>
+        <input type="text" id="subf" class="memflat" placeholder="Flat">
+      </div>
     </div>
 
     <button class="submit" id="submitBtn" onclick="submitReg()">Register Team</button>
@@ -189,18 +234,38 @@ function toggleErr(id,show){document.getElementById(id).classList.toggle("show",
 async function submitReg(){
   let ok=true;
   const team=document.getElementById("team").value.trim();
-  const captain=document.getElementById("captain").value.trim();
+  const captainName=document.getElementById("captainName").value.trim();
+  const captainTower=document.getElementById("captainTower").value.trim();
+  const captainFlat=document.getElementById("captainFlat").value.trim();
   const mobile=document.getElementById("mobile").value.trim();
   toggleErr("err-cat",!category); if(!category) ok=false;
   toggleErr("err-team",!team); if(!team) ok=false;
-  toggleErr("err-captain",!captain); if(!captain) ok=false;
+  toggleErr("err-captainName",!captainName); if(!captainName) ok=false;
+  toggleErr("err-captainTower",!captainTower); if(!captainTower) ok=false;
+  toggleErr("err-captainFlat",!captainFlat); if(!captainFlat) ok=false;
   const mOk=/^\d{10}$/.test(mobile); toggleErr("err-mobile",!mOk); if(!mOk) ok=false;
   if(!ok){ window.scrollTo({top:0,behavior:"smooth"}); return; }
 
-  // collect members (captain + up to 7 + substitute)
+  // format a person as "Name (Tower, Flat)" using whatever parts are present
+  function fmt(nm,tw,fl){
+    if(!nm) return "";
+    var loc=[tw,fl].filter(Boolean).join(", ");
+    return loc ? nm+" ("+loc+")" : nm;
+  }
+  const captain = fmt(captainName,captainTower,captainFlat);
+  // collect members (captain + up to 7)
   const members=[captain];
-  for(let i=1;i<=7;i++){ const v=document.getElementById("m"+i).value.trim(); if(v) members.push(v); }
-  const substitute=document.getElementById("sub").value.trim();
+  for(let i=1;i<=7;i++){
+    const nm=document.getElementById("m"+i+"n").value.trim();
+    const tw=document.getElementById("m"+i+"t").value.trim();
+    const fl=document.getElementById("m"+i+"f").value.trim();
+    const v=fmt(nm,tw,fl); if(v) members.push(v);
+  }
+  const substitute = fmt(
+    document.getElementById("subn").value.trim(),
+    document.getElementById("subt").value.trim(),
+    document.getElementById("subf").value.trim()
+  );
 
   const reg={
     form_type:"tugofwar",
