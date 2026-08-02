@@ -31,7 +31,7 @@ a{text-decoration:none;color:inherit}
 /* ---- NAV ---- */
 .nav{
   position:fixed;
-  top:0;left:0;right:0;
+  top:var(--banner-h,0px);left:0;right:0;
   z-index:20;
   display:flex;
   align-items:center;
@@ -320,9 +320,22 @@ a{text-decoration:none;color:inherit}
   .lb__btn{width:42px;height:42px;font-size:22px}
   .lb__img{max-height:72vh}
 }
+/* ---- Sadhya announcement ---- */
+.topbanner{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:linear-gradient(90deg,var(--gold-deep),var(--gold));color:#1a1205;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:.02em;padding:9px 16px;text-align:center}
+.topbanner strong{font-weight:800}
+.topbanner .go{background:#1a2416;color:#fff;font-weight:700;font-size:12.5px;padding:5px 12px;border-radius:20px;white-space:nowrap}
+.topbanner:hover .go{background:#000}
+.hero__cta{display:inline-flex;align-items:center;gap:9px;margin-top:6px;background:var(--gold);color:#1a1205;font-weight:700;font-size:15px;letter-spacing:.01em;padding:12px 22px;border-radius:26px;text-decoration:none;box-shadow:0 6px 22px rgba(232,184,75,.4);animation:ctaPulse 2.4s ease-in-out infinite}
+.hero__cta:hover{background:#fff}
+.hero__cta .dot2{width:8px;height:8px;border-radius:50%;background:#1a8f3c;box-shadow:0 0 0 0 rgba(26,143,60,.6);animation:liveDot 1.6s ease-out infinite}
+@keyframes liveDot{0%{box-shadow:0 0 0 0 rgba(26,143,60,.6)}70%{box-shadow:0 0 0 8px rgba(26,143,60,0)}100%{box-shadow:0 0 0 0 rgba(26,143,60,0)}}
+@keyframes ctaPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@media (prefers-reduced-motion:reduce){.hero__cta,.hero__cta .dot2{animation:none}}
 </style>
 </head>
 <body>
+
+<a class="topbanner" href="sadya.html">🍛 <span><strong>Sadhya coupons are now open!</strong> Reserve your Onam feast plates</span> <span class="go">Book now →</span></a>
 
 <nav class="nav" id="nav">
   <a class="nav__brand" href="#top">
@@ -354,6 +367,8 @@ a{text-decoration:none;color:inherit}
     <h1 class="title">Onam <em>Vannallo!</em></h1>
     <p class="sub">Three days of feasting, games and culture &mdash; our courtyard comes alive again this Onam.</p>
     <span class="dates">4, 5 &amp; 6 September 2026 &middot; Prestige Lakeside Habitat</span>
+
+    <a class="hero__cta" href="sadya.html"><span class="dot2"></span>Sadhya coupons now open — Book your plates</a>
 
     <div class="countdown" id="cd" aria-live="polite">
       <div class="unit"><span class="num" id="d">--</span><span class="lbl">Days</span></div>
@@ -510,6 +525,19 @@ a{text-decoration:none;color:inherit}
 
 
 <script>
+(function(){
+  // Offset nav + hero by the announcement banner's height (responsive to wrapping)
+  function setBannerH(){
+    var bn=document.querySelector('.topbanner');
+    if(!bn) return;
+    var hgt=bn.offsetHeight;
+    document.documentElement.style.setProperty('--banner-h', hgt+'px');
+    var hi=document.querySelector('.hero__inner');
+    if(hi) hi.style.paddingTop=(96+hgt)+'px';
+  }
+  setBannerH();
+  window.addEventListener('resize',setBannerH);
+})();
 (function(){
   // Kochukeralam Onam 2026 — 4 Sep 2026, 00:00 IST (UTC+5:30)
   var target = new Date("2026-09-04T00:00:00+05:30").getTime();
