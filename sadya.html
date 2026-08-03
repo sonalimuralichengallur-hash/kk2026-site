@@ -40,6 +40,12 @@ header.hero{position:relative;text-align:center;padding:36px 18px 28px;backgroun
 .hero h1 span{color:var(--gold-deep)}
 .hero .tag{color:#6b6551;font-size:14.5px}
 .hero .price{margin-top:12px;display:inline-block;background:var(--leaf);color:#fff;font-weight:700;font-size:13px;letter-spacing:1px;padding:6px 16px;border-radius:20px}
+.hero .event{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.hero .event .ev{display:flex;align-items:center;gap:9px;padding:9px 15px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);text-align:left}
+.hero .event .ev .ico{font-size:17px;line-height:1}
+.hero .event .ev .lbl{display:block;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;opacity:.8;font-weight:700}
+.hero .event .ev .val{display:block;font-size:14px;font-weight:700}
+.hero.haspic .event .ev{color:#fff}
 .wrap{max-width:640px;margin:0 auto;padding:26px 18px}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px;box-shadow:var(--shadow)}
 .card h3.ch{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--leaf);margin-bottom:16px;display:flex;align-items:center;gap:8px}
@@ -125,7 +131,7 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
 .menugrid li .n{color:#c9a24b;font-weight:700;min-width:20px;text-align:right;font-variant-numeric:tabular-nums;flex-shrink:0}
 .menugrid li .name{color:#f7f3e7}
 .menugrid li .en{color:#c9a24b;font-size:11.5px;opacity:.9}
-.menugrid li.sweet .name{color:#e6c56f;font-weight:600}
+.menugrid li.sweet .name{color:#f7f3e7;font-weight:400}
 .menurate{text-align:center;margin-top:16px;padding-top:14px;border-top:1px solid rgba(201,162,75,.4)}
 .menurate .amt{font-family:Georgia,serif;font-weight:700;font-size:30px;color:#fff}
 .menurate .per{display:block;font-size:10.5px;letter-spacing:3px;text-transform:uppercase;color:#c9a24b;margin-top:4px}
@@ -150,7 +156,11 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
   <div class="kicker">Kochukeralam · Onam 2026</div>
   <h1>Onam <span>Sadhya</span> Registration</h1>
   <p class="tag">Reserve your plates for the traditional feast</p>
-  <div class="price" id="priceBadge">₹... per plate</div>
+  <div class="event">
+    <span class="ev"><span class="ico">🗓</span><span><span class="lbl">When</span><span class="val">Sun, 6 Sept · 11 AM–2 PM</span></span></span>
+    <span class="ev"><span class="ico">📍</span><span><span class="lbl">Where</span><span class="val">Zephyr Hall</span></span></span>
+  </div>
+  <div class="price" id="priceBadge">₹... per person</div>
   </div>
 </header>
 
@@ -237,7 +247,7 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
           <li class="sweet"><span class="n">25</span><span class="name">Boli <span class="en">· Sweet lentil-stuffed flatbread</span></span></li>
           <li class="sweet"><span class="n">26</span><span class="name">Palada Payasam <span class="en">· Rice-ada milk pudding</span></span></li>
           <li class="sweet"><span class="n">27</span><span class="name">Parippu Pradhaman <span class="en">· Lentil-jaggery pudding</span></span></li>
-          <li><span class="n">28</span><span class="name">Paan <span class="en">· Betel-leaf digestive</span></span></li>
+          <li><span class="n">28</span><span class="name">Paan</span></li>
         </ul>
         <div class="menurate"><span class="amt">₹380</span><span class="per">Per Person · All 28 Items</span></div>
       </div>
@@ -313,7 +323,7 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
 const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbyFybGSxgULYFWspqHBFcDJwCaJ-DKqJyF5ZPhNKXfPzzjd_c5rgD4HycXFiKg-yDl6/exec";
 
 // PRICE PER PLATE - set this when decided.
-const PRICE_PER_PLATE = 380;   // ₹ per plate
+const PRICE_PER_PLATE = 600;   // ₹ per plate
 
 const PAYMENT = {
   upiId: "",       // Sadya UPI ID (leave "" for placeholder)
@@ -330,7 +340,7 @@ let lastReg = null;
 
 function initPrice(){
   const b=document.getElementById("priceBadge");
-  b.textContent = PRICE_PER_PLATE>0 ? ("₹"+PRICE_PER_PLATE+" per plate") : "Price to be announced";
+  b.textContent = PRICE_PER_PLATE>0 ? ("₹"+PRICE_PER_PLATE+" per person") : "Price to be announced";
 }
 function changePlates(type,d){
   if(type==='boiled'){ boiledPlates=Math.max(0,boiledPlates+d); document.getElementById("boiledQty").textContent=boiledPlates; }
