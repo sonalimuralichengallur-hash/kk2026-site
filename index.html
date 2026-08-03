@@ -20,6 +20,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+:target{scroll-margin-top:calc(var(--banner-h,0px) + 84px)}
+.hero,.schedule,.gallery,.contact{scroll-margin-top:calc(var(--banner-h,0px) + 84px)}
 body{
   font-family:"Jost",system-ui,sans-serif;
   color:var(--cream);
@@ -231,6 +233,40 @@ a{text-decoration:none;color:inherit}
 @media (max-width:780px){
   .days{grid-template-columns:1fr;gap:14px}
   .day{padding:20px 18px}
+}
+
+/* ---- CONTACT ---- */
+.contact{padding:74px 20px 40px;max-width:920px;margin:0 auto}
+.contact__head{text-align:center;margin-bottom:34px}
+.contact__eyebrow{
+  font-size:12px;letter-spacing:.4em;text-transform:uppercase;font-weight:600;
+  color:var(--gold);padding-left:.4em;
+}
+.contact__title{
+  font-family:"Fraunces",serif;font-weight:600;
+  font-size:clamp(30px,6vw,52px);line-height:1.02;margin-top:10px;
+}
+.contact__title em{font-style:italic;color:var(--gold)}
+.contacts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ccard{
+  background:#16281b;border:1px solid rgba(232,184,75,.16);
+  border-radius:14px;padding:18px 16px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+}
+.ccard__role{
+  font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);background:var(--gold);padding:3px 10px;border-radius:20px;
+  display:inline-block;margin-bottom:9px;
+}
+.ccard__name{font-family:"Fraunces",serif;font-size:17px;font-weight:600;color:var(--cream);line-height:1.15}
+.ccard__phone{display:inline-block;margin-top:5px;font-size:13.5px;color:var(--gold);text-decoration:none;font-weight:500;letter-spacing:.01em}
+.ccard__phone::before{content:"\1F4DE  ";font-size:11px}
+@media (max-width:780px){
+  .contacts{grid-template-columns:1fr 1fr;gap:12px}
+  .ccard{padding:16px 12px}
+}
+@media (max-width:460px){
+  .contacts{grid-template-columns:1fr}
 }
 
 /* ---- GALLERY ---- */
@@ -509,6 +545,40 @@ a{text-decoration:none;color:inherit}
       <button class="tile" data-i="19" aria-label="Kochukeralam Onam 2026 — photo 20">
         <img src="gallery/thumb20.jpg" alt="Kochukeralam Onam 2026 — photo 20" loading="lazy">
       </button>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact__head">
+    <p class="contact__eyebrow">Get in Touch</p>
+    <h2 class="contact__title">Contact <em>us</em></h2>
+  </div>
+  <div class="contacts">
+    <div class="ccard">
+      <span class="ccard__role">President</span>
+      <div class="ccard__name">Vinod</div>
+      <a class="ccard__phone" href="tel:+919744344000">+91 97443 44000</a>
+    </div>
+    <div class="ccard">
+      <span class="ccard__role">Secretary</span>
+      <div class="ccard__name">Anitha</div>
+      <a class="ccard__phone" href="tel:+919972811413">+91 99728 11413</a>
+    </div>
+    <div class="ccard">
+      <span class="ccard__role">Treasurer</span>
+      <div class="ccard__name">Vimal</div>
+      <a class="ccard__phone" href="tel:+919980520328">+91 99805 20328</a>
+    </div>
+    <div class="ccard">
+      <span class="ccard__role">Sponsorship</span>
+      <div class="ccard__name">Syam</div>
+      <a class="ccard__phone" href="tel:+919663311880">+91 96633 11880</a>
+    </div>
+    <div class="ccard">
+      <span class="ccard__role">Event / Sadya Registrations</span>
+      <div class="ccard__name">Sonali</div>
+      <a class="ccard__phone" href="tel:+919650418565">+91 96504 18565</a>
+    </div>
   </div>
 </section>
 
