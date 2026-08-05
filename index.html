@@ -6,6 +6,11 @@
 <title>Kochukeralam Onam 2026</title>
 <meta name="description" content="Kochukeralam Onam 2026 — three days of Onam celebration by PLH Malayalee Association.">
 <meta name="theme-color" content="#0f1c12">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kochukeralam Onam 2026">
+<meta property="og:description" content="Three days of feasting, games and culture — 4, 5 &amp; 6 September 2026 at Prestige Lakeside Habitat.">
+<meta property="og:site_name" content="Kochukeralam">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,8 +25,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-:target{scroll-margin-top:calc(var(--banner-h,0px) + 84px)}
-.hero,.schedule,.gallery,.contact{scroll-margin-top:calc(var(--banner-h,0px) + 84px)}
+section[id],header[id]{scroll-margin-top:calc(var(--banner-h,0px) + 70px)}
 body{
   font-family:"Jost",system-ui,sans-serif;
   color:var(--cream);
@@ -54,7 +58,7 @@ a{text-decoration:none;color:inherit}
 }
 .nav__brand img{height:30px;width:auto;display:block;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
 .nav__brand span b{color:var(--gold)}
-.nav__links{display:flex;gap:22px;align-items:center}
+.nav__links{display:flex;gap:18px;align-items:center}
 .nav__links a{
   font-size:13px;font-weight:500;letter-spacing:.02em;
   color:rgba(247,242,228,.82);
@@ -71,7 +75,7 @@ a{text-decoration:none;color:inherit}
   font-size:22px;color:var(--cream);padding:4px 6px;line-height:1;
 }
 /* mobile menu */
-@media (max-width:860px){
+@media (max-width:1000px){
   .nav__links{
     position:absolute;top:100%;left:0;right:0;
     flex-direction:column;gap:0;align-items:stretch;
@@ -193,8 +197,8 @@ a{text-decoration:none;color:inherit}
 
 /* ---- SCHEDULE ---- */
 .schedule{
-  padding:74px 20px 40px;
-  max-width:1000px;margin:0 auto;
+  padding:80px 20px;
+  max-width:1060px;margin:0 auto;
 }
 .schedule__head{text-align:center;margin-bottom:40px}
 .schedule__eyebrow{
@@ -235,42 +239,9 @@ a{text-decoration:none;color:inherit}
   .day{padding:20px 18px}
 }
 
-/* ---- CONTACT ---- */
-.contact{padding:74px 20px 40px;max-width:920px;margin:0 auto}
-.contact__head{text-align:center;margin-bottom:34px}
-.contact__eyebrow{
-  font-size:12px;letter-spacing:.4em;text-transform:uppercase;font-weight:600;
-  color:var(--gold);padding-left:.4em;
-}
-.contact__title{
-  font-family:"Fraunces",serif;font-weight:600;
-  font-size:clamp(30px,6vw,52px);line-height:1.02;margin-top:10px;
-}
-.contact__title em{font-style:italic;color:var(--gold)}
-.contacts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.ccard{
-  background:#16281b;border:1px solid rgba(232,184,75,.16);
-  border-radius:14px;padding:18px 16px;text-align:center;
-  display:flex;flex-direction:column;align-items:center;
-}
-.ccard__role{
-  font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink);background:var(--gold);padding:3px 10px;border-radius:20px;
-  display:inline-block;margin-bottom:9px;
-}
-.ccard__name{font-family:"Fraunces",serif;font-size:17px;font-weight:600;color:var(--cream);line-height:1.15}
-.ccard__phone{display:inline-block;margin-top:5px;font-size:13.5px;color:var(--gold);text-decoration:none;font-weight:500;letter-spacing:.01em}
-.ccard__phone::before{content:"\1F4DE  ";font-size:11px}
-@media (max-width:780px){
-  .contacts{grid-template-columns:1fr 1fr;gap:12px}
-  .ccard{padding:16px 12px}
-}
-@media (max-width:460px){
-  .contacts{grid-template-columns:1fr}
-}
-
 /* ---- GALLERY ---- */
-  padding:72px 20px 84px;
+.gallery{
+  padding:80px 20px;
   max-width:1160px;margin:0 auto;
 }
 .gallery__head{text-align:center;margin-bottom:38px}
@@ -361,12 +332,161 @@ a{text-decoration:none;color:inherit}
 .topbanner strong{font-weight:800}
 .topbanner .go{background:#1a2416;color:#fff;font-weight:700;font-size:12.5px;padding:5px 12px;border-radius:20px;white-space:nowrap}
 .topbanner:hover .go{background:#000}
-.hero__cta{display:inline-flex;align-items:center;gap:9px;margin-top:6px;background:var(--gold);color:#1a1205;font-weight:700;font-size:15px;letter-spacing:.01em;padding:12px 22px;border-radius:26px;text-decoration:none;box-shadow:0 6px 22px rgba(232,184,75,.4);animation:ctaPulse 2.4s ease-in-out infinite}
-.hero__cta:hover{background:#fff}
+.hero__cta{display:inline-flex;align-items:center;gap:9px;margin-top:6px;background:var(--gold);color:#1a1205;font-weight:700;font-size:15px;letter-spacing:.01em;padding:12px 22px;border-radius:26px;text-decoration:none;box-shadow:0 6px 22px rgba(232,184,75,.4);transition:background .2s,transform .2s}
+.hero__cta:hover{background:#fff;transform:translateY(-2px)}
 .hero__cta .dot2{width:8px;height:8px;border-radius:50%;background:#1a8f3c;box-shadow:0 0 0 0 rgba(26,143,60,.6);animation:liveDot 1.6s ease-out infinite}
 @keyframes liveDot{0%{box-shadow:0 0 0 0 rgba(26,143,60,.6)}70%{box-shadow:0 0 0 8px rgba(26,143,60,0)}100%{box-shadow:0 0 0 0 rgba(26,143,60,0)}}
-@keyframes ctaPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-@media (prefers-reduced-motion:reduce){.hero__cta,.hero__cta .dot2{animation:none}}
+@media (prefers-reduced-motion:reduce){.hero__cta .dot2{animation:none}}
+
+/* ---- SHARED SECTION HEADS ---- */
+.sec{padding:80px 20px;max-width:1160px;margin:0 auto}
+.sec__head{text-align:center;margin-bottom:42px}
+.sec__eyebrow{
+  font-size:12px;letter-spacing:.4em;text-transform:uppercase;font-weight:600;
+  color:var(--gold);padding-left:.4em;
+}
+.sec__title{
+  font-family:"Fraunces",serif;font-weight:600;
+  font-size:clamp(30px,6vw,52px);line-height:1.02;margin-top:10px;
+}
+.sec__title em{font-style:italic;color:var(--gold)}
+.sec__sub{margin-top:12px;color:rgba(247,242,228,.7);font-size:15px;max-width:52ch;margin-left:auto;margin-right:auto}
+.rule{height:1px;max-width:1160px;margin:0 auto;background:linear-gradient(90deg,transparent,rgba(232,184,75,.24),transparent)}
+
+/* ---- PRESENTING STRIP (under hero) ---- */
+.pstrip{
+  background:#132218;border-bottom:1px solid rgba(232,184,75,.13);
+  padding:18px 20px;
+}
+.pstrip__inner{
+  max-width:1160px;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+  gap:14px 40px;flex-wrap:wrap;
+}
+.pstrip__item{display:flex;align-items:center;gap:12px}
+.pstrip__role{
+  font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;
+  color:rgba(232,184,75,.85);white-space:nowrap;
+}
+.pstrip__name{
+  font-family:"Fraunces",serif;font-weight:600;font-size:17px;color:var(--cream);
+  letter-spacing:.01em;white-space:nowrap;
+}
+.pstrip__sep{width:1px;height:26px;background:rgba(232,184,75,.22)}
+.pstrip__link{
+  color:var(--gold);text-decoration:underline;text-underline-offset:3px;
+  transition:color .2s;
+}
+.pstrip__link:hover{color:var(--cream)}
+@media (max-width:640px){
+  .pstrip__inner{flex-direction:column;gap:12px}
+  .pstrip__sep{display:none}
+  .pstrip__item{flex-direction:column;gap:3px;text-align:center}
+}
+
+/* ---- SPONSORS ---- */
+.sponsors{background:#111f15;border-top:1px solid rgba(232,184,75,.1);border-bottom:1px solid rgba(232,184,75,.1)}
+.sp-board{
+  margin:0 auto;max-width:1020px;
+  background:#fff;border:1px solid rgba(232,184,75,.34);
+  border-radius:18px;padding:clamp(14px,2.6vw,26px);overflow:hidden;
+  box-shadow:0 14px 44px rgba(0,0,0,.34);
+}
+.sp-board img{width:100%;height:auto;display:block}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+.sp-cta{
+  margin-top:44px;text-align:center;
+  padding:26px 20px;border:1px dashed rgba(232,184,75,.3);border-radius:16px;
+}
+.sp-cta p{font-size:15px;color:rgba(247,242,228,.8);line-height:1.55}
+.sp-cta strong{color:var(--cream);font-weight:600}
+.sp-cta a{
+  display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+  background:var(--gold);color:#1a1205;font-weight:700;font-size:14px;
+  padding:10px 20px;border-radius:24px;transition:background .2s;
+}
+.sp-cta a:hover{background:#fff}
+
+/* ---- CONTACT ---- */
+.contact{background:#0f1c12}
+.cgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.ccard{flex:1 1 275px;max-width:346px}
+.ccard{
+  background:#16281b;border:1px solid rgba(232,184,75,.16);
+  border-radius:16px;padding:22px 20px;
+}
+.ccard__role{
+  font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+  color:var(--gold);margin-bottom:9px;
+}
+.ccard__name{font-family:"Fraunces",serif;font-weight:600;font-size:19px;color:var(--cream);line-height:1.2}
+.ccard__tel{
+  display:inline-block;margin-top:9px;font-size:14.5px;font-weight:500;
+  color:rgba(247,242,228,.82);transition:color .2s;letter-spacing:.02em;
+}
+.ccard__tel:hover{color:var(--gold)}
+.ccard__tel::before{content:"\260E\FE0F  ";font-size:12px}
+.cvenue{
+  margin-top:28px;padding:24px 22px;border-radius:16px;
+  border:1px solid rgba(232,184,75,.16);background:#132218;
+  display:flex;flex-wrap:wrap;gap:18px 46px;align-items:flex-start;justify-content:center;text-align:center;
+}
+.cvenue__block{min-width:190px}
+.cvenue__label{
+  font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+  color:var(--gold);margin-bottom:7px;
+}
+.cvenue__val{font-size:15px;color:rgba(247,242,228,.86);line-height:1.5}
+@media (max-width:560px){.ccard{flex:1 1 100%;max-width:none}}
+
+/* ---- FOOTER ---- */
+.foot{background:#0c1710;border-top:1px solid rgba(232,184,75,.14)}
+.foot__inner{
+  max-width:1160px;margin:0 auto;padding:44px 20px 30px;
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;
+}
+.foot__brand{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.foot__brand img{height:34px;width:auto;display:block}
+.foot__brand span{font-family:"Fraunces",serif;font-weight:600;font-size:18px}
+.foot__brand span b{color:var(--gold)}
+.foot__blurb{font-size:13.5px;color:rgba(247,242,228,.62);line-height:1.6;max-width:38ch}
+.foot__h{
+  font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+  color:var(--gold);margin-bottom:13px;
+}
+.foot__links{display:flex;flex-direction:column;gap:9px}
+.foot__links a{font-size:13.5px;color:rgba(247,242,228,.7);transition:color .2s;width:fit-content}
+.foot__links a:hover{color:var(--gold)}
+.foot__bar{
+  border-top:1px solid rgba(247,242,228,.08);
+  max-width:1160px;margin:0 auto;padding:16px 20px 24px;
+  display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between;
+  font-size:12.5px;color:rgba(247,242,228,.5);
+}
+.foot__bar b{color:rgba(247,242,228,.72);font-weight:600}
+@media (max-width:760px){
+  .foot__inner{grid-template-columns:1fr;gap:26px;padding:36px 20px 24px}
+  .foot__bar{justify-content:center;text-align:center}
+}
+
+/* ---- BACK TO TOP ---- */
+.totop{
+  position:fixed;right:18px;bottom:18px;z-index:30;
+  width:44px;height:44px;border-radius:50%;border:1px solid rgba(232,184,75,.35);
+  background:rgba(15,28,18,.9);color:var(--gold);font-size:19px;line-height:1;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  opacity:0;pointer-events:none;transition:opacity .3s ease,background .2s;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.totop.show{opacity:1;pointer-events:auto}
+.totop:hover{background:var(--gold);color:var(--ink)}
+
+/* ---- FOCUS VISIBILITY ---- */
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
 </style>
 </head>
 <body>
@@ -385,6 +505,7 @@ a{text-decoration:none;color:inherit}
     <a href="sadya.html">Sadhya</a>
     <a href="games.html">Games</a>
     <a href="tugofwar.html">Tug of War</a>
+    <a href="#sponsors">Sponsors</a>
     <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </div>
@@ -415,6 +536,29 @@ a{text-decoration:none;color:inherit}
 
   <div class="cue"><span class="dot"></span>Scroll</div>
 </header>
+
+<div class="pstrip">
+  <div class="pstrip__inner">
+    <div class="pstrip__item">
+      <span class="pstrip__role">Presented by</span>
+      <span class="pstrip__name">MANA</span>
+    </div>
+    <span class="pstrip__sep"></span>
+    <div class="pstrip__item">
+      <span class="pstrip__role">Powered by</span>
+      <span class="pstrip__name">Oakridge International School</span>
+    </div>
+    <span class="pstrip__sep"></span>
+    <div class="pstrip__item">
+      <span class="pstrip__name">BMW Deutsche Motoren</span>
+    </div>
+    <span class="pstrip__sep"></span>
+    <div class="pstrip__item">
+      <a class="pstrip__role pstrip__link" href="#sponsors">See all sponsors &rarr;</a>
+    </div>
+  </div>
+</div>
+
 
 <section class="schedule" id="schedule">
   <div class="schedule__head">
@@ -477,6 +621,38 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 </section>
+
+<div class="rule"></div>
+
+<!-- =====================================================================
+     SPONSORS — the artwork lives in  sponsors.jpg  next to this file.
+     To update, just replace that image; nothing here needs editing.
+     ===================================================================== -->
+<section class="sponsors" id="sponsors">
+  <div class="sec">
+    <div class="sec__head">
+      <p class="sec__eyebrow">With thanks</p>
+      <h2 class="sec__title">Our <em>sponsors</em></h2>
+      <p class="sec__sub">Kochukeralam Onam 2026 is made possible by the businesses and families who back our community year after year.</p>
+    </div>
+
+    <figure class="sp-board">
+      <img src="sponsors.jpg" alt="Sponsors of Kochukeralam Onam 2026" loading="lazy" width="1283" height="732">
+    </figure>
+
+    <p class="sr-only">Our sponsors: MANA (Live Brilliantly), Sreem Interior Pvt Ltd, Deutsche Motoren BMW,
+      Oakridge International School Bengaluru, EDIRA, King Tours &amp; Travels, Better Speech &amp; Hearing Clinic,
+      VAMA Academy for Music &amp; Performing Arts, Bengaluru Local Bakery, SWA Diamonds, Feather Touch,
+      Hum &amp; Strum Music School, TONI&amp;GUY Gunjur Vartur, BLT The Travel People, Sreerupa, M SRI Fintech.</p>
+
+    <div class="sp-cta">
+      <p>Want your business in front of <strong>1,500+ residents</strong> across three days of Onam?<br>A few sponsorship slots are still open.</p>
+      <a href="#contact">Talk to the committee →</a>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
 
 <section class="gallery" id="gallery">
   <div class="gallery__head">
@@ -548,39 +724,100 @@ a{text-decoration:none;color:inherit}
   </div>
 </section>
 
+<div class="rule"></div>
+
+<!-- =====================================================================
+     CONTACT — replace the names and numbers below with the real committee
+     ===================================================================== -->
 <section class="contact" id="contact">
-  <div class="contact__head">
-    <p class="contact__eyebrow">Get in Touch</p>
-    <h2 class="contact__title">Contact <em>us</em></h2>
-  </div>
-  <div class="contacts">
-    <div class="ccard">
-      <span class="ccard__role">President</span>
-      <div class="ccard__name">Vinod</div>
-      <a class="ccard__phone" href="tel:+919744344000">+91 97443 44000</a>
+  <div class="sec">
+    <div class="sec__head">
+      <p class="sec__eyebrow">Get in touch</p>
+      <h2 class="sec__title">Organising <em>committee</em></h2>
+      <p class="sec__sub">Questions about coupons, registrations or sponsorship? Reach the right person directly.</p>
     </div>
-    <div class="ccard">
-      <span class="ccard__role">Secretary</span>
-      <div class="ccard__name">Anitha</div>
-      <a class="ccard__phone" href="tel:+919972811413">+91 99728 11413</a>
+
+    <div class="cgrid">
+      <div class="ccard">
+        <p class="ccard__role">Committee President</p>
+        <p class="ccard__name">Vinod</p>
+        <a class="ccard__tel" href="tel:+919744344000">+91 97443 44000</a>
+      </div>
+      <div class="ccard">
+        <p class="ccard__role">Committee Secretary</p>
+        <p class="ccard__name">Anitha</p>
+        <a class="ccard__tel" href="tel:+919972811413">+91 99728 11413</a>
+      </div>
+      <div class="ccard">
+        <p class="ccard__role">Committee Treasurer</p>
+        <p class="ccard__name">Vimal</p>
+        <a class="ccard__tel" href="tel:+919980520328">+91 99805 20328</a>
+      </div>
+      <div class="ccard">
+        <p class="ccard__role">Onam Sponsorship</p>
+        <p class="ccard__name">Syam</p>
+        <a class="ccard__tel" href="tel:+919663311880">+91 96633 11880</a>
+      </div>
+      <div class="ccard">
+        <p class="ccard__role">Event &amp; Sadhya Registrations</p>
+        <p class="ccard__name">Sonali</p>
+        <a class="ccard__tel" href="tel:+919650418565">+91 96504 18565</a>
+      </div>
     </div>
-    <div class="ccard">
-      <span class="ccard__role">Treasurer</span>
-      <div class="ccard__name">Vimal</div>
-      <a class="ccard__phone" href="tel:+919980520328">+91 99805 20328</a>
-    </div>
-    <div class="ccard">
-      <span class="ccard__role">Sponsorship</span>
-      <div class="ccard__name">Syam</div>
-      <a class="ccard__phone" href="tel:+919663311880">+91 96633 11880</a>
-    </div>
-    <div class="ccard">
-      <span class="ccard__role">Event / Sadya Registrations</span>
-      <div class="ccard__name">Sonali</div>
-      <a class="ccard__phone" href="tel:+919650418565">+91 96504 18565</a>
+
+    <div class="cvenue">
+      <div class="cvenue__block">
+        <p class="cvenue__label">Dates</p>
+        <p class="cvenue__val">4, 5 &amp; 6 September 2026</p>
+      </div>
+      <div class="cvenue__block">
+        <p class="cvenue__label">Venue</p>
+        <p class="cvenue__val">Prestige Lakeside Habitat<br>Varthur, Bengaluru</p>
+      </div>
+      <div class="cvenue__block">
+        <p class="cvenue__label">Organised by</p>
+        <p class="cvenue__val">PLH Malayalee Association</p>
+      </div>
     </div>
   </div>
 </section>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div>
+      <div class="foot__brand">
+        <img id="footLogo" alt="Kochukeralam logo">
+        <span>Kochu<b>keralam</b></span>
+      </div>
+      <p class="foot__blurb">The annual Onam celebration of the PLH Malayalee Association — three days of feasting, games and culture at Prestige Lakeside Habitat.</p>
+    </div>
+    <div>
+      <p class="foot__h">Festival</p>
+      <div class="foot__links">
+        <a href="#schedule">Schedule</a>
+        <a href="#sponsors">Sponsors</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div>
+      <p class="foot__h">Book &amp; register</p>
+      <div class="foot__links">
+        <a href="sadya.html">Sadhya coupons</a>
+        <a href="tshirts.html">T-Shirts</a>
+        <a href="games.html">Games</a>
+        <a href="tugofwar.html">Tug of War</a>
+      </div>
+    </div>
+  </div>
+  <div class="band" style="height:4px"></div>
+  <div class="foot__bar">
+    <span>© 2026 <b>PLH Malayalee Association</b> · Kochukeralam Onam 2026</span>
+    <span>Presented by <b>MANA</b> · Powered by <b>Sreem Interiors Pvt Ltd</b></span>
+  </div>
+</footer>
+
+<button class="totop" id="toTop" aria-label="Back to top">&#8593;</button>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <button class="lb__close" id="lbClose" aria-label="Close">&times;</button>
@@ -622,9 +859,13 @@ a{text-decoration:none;color:inherit}
   }
   tick();var timer=setInterval(tick,1000);
 
-  // nav scroll state
-  var nav=document.getElementById('nav');
-  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+  // nav scroll state + back-to-top visibility
+  var nav=document.getElementById('nav'), toTop=document.getElementById('toTop');
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>20);
+    if(toTop) toTop.classList.toggle('show',window.scrollY>700);
+  },{passive:true});
+  if(toTop) toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
   // mobile menu
   var t=document.getElementById('navToggle'),links=document.getElementById('navLinks');
@@ -633,6 +874,18 @@ a{text-decoration:none;color:inherit}
     t.setAttribute('aria-expanded',open);
   });
   links.addEventListener('click',function(e){if(e.target.tagName==='A')links.classList.remove('open');});
+
+  // footer logo reuses the nav image (keeps the page from embedding it twice)
+  var navLogo=document.querySelector('.nav__brand img'), footLogo=document.getElementById('footLogo');
+  if(navLogo && footLogo) footLogo.src = navLogo.src;
+
+  // keep the back-to-top button clear of the footer
+  var footEl = document.querySelector('.foot');
+  if(footEl && toTop && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(en){
+      toTop.style.visibility = en[0].isIntersecting ? 'hidden' : 'visible';
+    },{threshold:0}).observe(footEl);
+  }
 
   // ---- gallery lightbox ----
   var FULL=["gallery/photo01.jpg", "gallery/photo02.jpg", "gallery/photo03.jpg", "gallery/photo04.jpg", "gallery/photo05.jpg", "gallery/photo06.jpg", "gallery/photo07.jpg", "gallery/photo08.jpg", "gallery/photo09.jpg", "gallery/photo10.jpg", "gallery/photo11.jpg", "gallery/photo12.jpg", "gallery/photo13.jpg", "gallery/photo14.jpg", "gallery/photo15.jpg", "gallery/photo16.jpg", "gallery/photo17.jpg", "gallery/photo18.jpg", "gallery/photo19.jpg", "gallery/photo20.jpg"];
