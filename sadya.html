@@ -136,6 +136,24 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
 .menurate .amt{font-family:Georgia,serif;font-weight:700;font-size:30px;color:#fff}
 .menurate .per{display:block;font-size:10.5px;letter-spacing:3px;text-transform:uppercase;color:#c9a24b;margin-top:4px}
 .ricehint{font-size:13px;color:#7a7460;margin:-6px 0 16px}
+
+/* --- edit-registration flow --- */
+.lookupcard{background:linear-gradient(180deg,#fff,var(--leaf-light));border:1px dashed var(--line);border-radius:14px;padding:16px 18px;margin-bottom:20px}
+.lookupcard h4{font-size:14px;color:var(--leaf);margin-bottom:4px}
+.lookupcard p{font-size:12.5px;color:#6b6551;margin-bottom:10px}
+.lookuprow{display:flex;gap:8px;flex-wrap:wrap}
+.lookuprow input{flex:1 1 160px;margin:0}
+.lookupbtn{flex:0 0 auto;background:var(--leaf);color:#fff;border:0;border-radius:10px;padding:11px 18px;font-weight:700;font-size:13.5px;cursor:pointer}
+.lookupbtn:disabled{opacity:.55;cursor:default}
+.lookupstatus{font-size:12.5px;margin-top:9px;min-height:16px;color:#6b6551}
+.lookupstatus.ok{color:var(--leaf);font-weight:600}
+.lookupstatus.warn{color:var(--red);font-weight:600}
+.editbanner{display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--sand);border:1px solid var(--gold);border-radius:12px;padding:11px 14px;margin-bottom:18px;font-size:13px;font-weight:600;color:var(--ink)}
+.editbanner.show{display:flex}
+.editbanner button{background:none;border:0;color:var(--red);font-weight:700;font-size:12.5px;cursor:pointer;text-decoration:underline;padding:0}
+input[readonly]{background:#f4f1e7;color:#6b6551;cursor:not-allowed}
+.readonlyhint{font-size:11.5px;color:#8a836c;margin:-6px 0 12px;display:none}
+.readonlyhint.show{display:block}
 </style>
 </head>
 <body>
@@ -166,6 +184,21 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
 
 <div class="wrap">
   <div id="form">
+
+    <div class="lookupcard" id="lookupCard">
+      <h4>Already registered?</h4>
+      <p>Enter the WhatsApp number you registered with to load your booking and change it.</p>
+      <div class="lookuprow">
+        <input type="tel" id="lookupMobile" placeholder="10-digit WhatsApp number" maxlength="10">
+        <button class="lookupbtn" id="lookupBtn" type="button" onclick="lookupReg()">Find my registration</button>
+      </div>
+      <div class="lookupstatus" id="lookupStatus"></div>
+    </div>
+
+    <div class="editbanner" id="editBanner">
+      <span>✎ Editing your existing registration</span>
+      <button type="button" onclick="cancelEdit()">Cancel &amp; start fresh</button>
+    </div>
     <div class="card">
       <h3 class="ch">Your Details</h3>
       <label>Full Name <span class="req">*</span></label>
@@ -174,6 +207,7 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
       <label>WhatsApp Number <span class="req">*</span></label>
       <input type="tel" id="mobile" placeholder="10-digit WhatsApp number" maxlength="10">
       <div class="err" id="err-mobile">Please enter a valid 10-digit WhatsApp number</div>
+      <div class="readonlyhint" id="mobileHint">To change your WhatsApp number, please contact the committee.</div>
       <label>Tower / Villa <span class="req">*</span></label>
       <select id="tower" class="towerSel">
         <option value="" disabled selected>Select Tower / Villa</option>
@@ -288,7 +322,7 @@ input:focus{outline:2px solid var(--gold);border-color:var(--gold);background:#f
   <div id="success" style="display:none;">
     <div class="card done">
       <div class="tick">🌼</div>
-      <h3 class="ch">Registration Received!</h3>
+      <h3 class="ch" id="doneHead">Registration Received!</h3>
       <p id="doneMsg"></p>
       <div id="sendStatus" class="sendstatus"></div>
       <div class="fallback" id="fallback">
@@ -337,6 +371,8 @@ const SHOW_DIAGNOSTICS = false;
 let boiledPlates = 0;
 let whitePlates = 0;
 let lastReg = null;
+let editing = false;
+let editingRegId = null;
 
 function initPrice(){
   const b=document.getElementById("priceBadge");
@@ -387,10 +423,11 @@ async function submitReg(){
   const amount=plates*PRICE_PER_PLATE;
   const riceSummary=[boiledPlates>0?`${boiledPlates} boiled`:null, whitePlates>0?`${whitePlates} white`:null].filter(Boolean).join(", ");
   const reg={form_type:"sadya",name,whatsapp:mobile,tower,flat,boiled_plates:boiledPlates,white_plates:whitePlates,plates,rice:riceSummary,amount,time:new Date().toISOString()};
+  if(editing){ reg.action="update"; reg.reg_id=editingRegId; }
   lastReg=reg;
 
   document.getElementById("doneMsg").innerHTML =
-    `Thank you, <strong>${name}</strong>! You've registered for <strong>${plates} plate${plates>1?'s':''}</strong>`
+    `Thank you, <strong>${name}</strong>! Your booking is now <strong>${plates} plate${plates>1?'s':''}</strong>`
     + (PRICE_PER_PLATE>0 ? ` (₹${amount.toLocaleString('en-IN')})` : ``) + `.<br>Rice: ${riceSummary} · Tower ${tower}, Flat ${flat}.`;
   document.getElementById("payAmount").textContent = "₹"+amount.toLocaleString('en-IN');
 
@@ -402,9 +439,12 @@ async function submitReg(){
 
   const st=document.getElementById("sendStatus");
   st.className="sendstatus"; st.textContent="Saving your registration…";
-  const sent=await sendToSheet(reg);
-  if(sent){ st.className="sendstatus ok"; st.textContent="✓ Registration submitted."; }
-  else { st.className="sendstatus warn"; st.textContent="⚠ We couldn't confirm your registration."; showFallback(reg); }
+  const wasEditing=editing;
+  document.getElementById("doneHead").textContent = wasEditing ? "Registration Updated!" : "Registration Received!";
+  st.textContent = wasEditing ? "Saving your changes…" : "Saving your registration…";
+  const sent=await sendToSheet(reg, wasEditing);
+  if(sent){ st.className="sendstatus ok"; st.textContent = wasEditing ? "✓ Changes saved." : "✓ Registration submitted."; }
+  else { st.className="sendstatus warn"; st.textContent = wasEditing ? "⚠ We couldn't save your changes." : "⚠ We couldn't confirm your registration."; showFallback(reg); }
   btn.disabled=false;
 }
 
@@ -419,20 +459,96 @@ function copyFallback(){
   navigator.clipboard.writeText(t).then(()=>alert("Details copied. Please paste them to the committee."),()=>alert("Couldn't copy, please screenshot the details."));
 }
 
-async function sendToSheet(reg){
+async function sendToSheet(reg, requireConfirm){
   if(!SHEET_ENDPOINT) return false;
   const body=JSON.stringify(reg);
   try{
     const r=await fetch(SHEET_ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body});
-    if(r.ok) return true;
+    if(r.ok){
+      try{ const d=await r.json(); if(d && d.ok===false) return false; }catch(e){}
+      return true;
+    }
   }catch(e){}
+  // Blind no-cors retry: the response is unreadable, so it can only be trusted
+  // for appends. An update must be confirmed or the resident is told it failed.
+  if(requireConfirm) return false;
   try{
     await fetch(SHEET_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body});
     return true;
   }catch(e){ return false; }
 }
 
+/* ---------- lookup & edit ---------- */
+
+async function lookupReg(){
+  const m=document.getElementById("lookupMobile").value.trim();
+  const st=document.getElementById("lookupStatus");
+  const btn=document.getElementById("lookupBtn");
+  if(!/^\d{10}$/.test(m)){
+    st.className="lookupstatus warn";
+    st.textContent="Please enter the 10-digit number you registered with.";
+    return;
+  }
+  st.className="lookupstatus"; st.textContent="Looking up your registration…";
+  btn.disabled=true;
+  try{
+    const url=SHEET_ENDPOINT+"?form_type=sadya&mobile="+encodeURIComponent(m);
+    const r=await fetch(url);
+    const data=await r.json();
+    if(!data || !data.ok){
+      st.className="lookupstatus warn";
+      st.textContent="No registration found for that number. You can register below.";
+      btn.disabled=false; return;
+    }
+    fillFromReg(data.registration);
+    st.className="lookupstatus ok";
+    st.textContent="✓ Found it — your details are loaded below.";
+  }catch(e){
+    st.className="lookupstatus warn";
+    st.textContent="Couldn't reach our system. Please try again in a moment.";
+  }
+  btn.disabled=false;
+}
+
+function fillFromReg(r){
+  document.getElementById("name").value=r.name||"";
+  document.getElementById("mobile").value=r.whatsapp||"";
+  document.getElementById("tower").value=r.tower||"";
+  document.getElementById("flat").value=r.flat||"";
+  boiledPlates=Number(r.boiled_plates)||0;
+  whitePlates=Number(r.white_plates)||0;
+  document.getElementById("boiledQty").textContent=boiledPlates;
+  document.getElementById("whiteQty").textContent=whitePlates;
+  editingRegId=r.reg_id||"";
+  setEditing(true);
+  renderSummary();
+  document.getElementById("editBanner").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function setEditing(on){
+  editing=on;
+  document.getElementById("editBanner").classList.toggle("show",on);
+  document.getElementById("lookupCard").style.display = on ? "none" : "block";
+  document.getElementById("mobileHint").classList.toggle("show",on);
+  const mob=document.getElementById("mobile");
+  if(on) mob.setAttribute("readonly","readonly"); else mob.removeAttribute("readonly");
+  document.getElementById("submitBtn").textContent = on ? "Update Registration" : "Register";
+  const sb=document.querySelector(".sb-btn");
+  if(sb) sb.textContent = on ? "Update" : "Register";
+}
+
+function cancelEdit(){
+  editingRegId=null;
+  setEditing(false);
+  resetForm();
+}
+
 function resetForm(){
+  editingRegId=null;
+  setEditing(false);
+  document.getElementById("lookupMobile").value="";
+  const ls=document.getElementById("lookupStatus"); ls.textContent=""; ls.className="lookupstatus";
+  document.getElementById("doneHead").textContent="Registration Received!";
   ["name","mobile","tower","flat"].forEach(id=>document.getElementById(id).value="");
   boiledPlates=0; whitePlates=0;
   document.getElementById("boiledQty").textContent="0";
